@@ -9,11 +9,11 @@
                     <th>authorid</th>
                     <th>name</th>
                 </tr>
-                @for(user <- users){
+                @for(author <- authors){
                 <tr>
-                    <td>@author.id</td>
-                    <td>@author.name</td>
-                    <td><a href="@routes.ApplicationController.index">Книги</a></td>
+                    <td>@author.author_id</td>
+                    <td>@author.author_name</td>
+                    <td><a href="@routes.HomeController.index">Книги</a></td>
                 </tr>
                 }
             </table>

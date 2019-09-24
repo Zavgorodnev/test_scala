@@ -6,7 +6,7 @@ import models.{Author, Authors}
 import scala.concurrent.Future
 
 class AuthorService @Inject()(authors: Authors){
-  def addUAuthor(author: Author): Future[String] = {
+  def addAuthor(author: Author): Future[String] = {
     authors.add(author)
   }
 
