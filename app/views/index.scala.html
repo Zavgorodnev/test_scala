@@ -1,5 +1,20 @@
-@()
-
-@main("Welcome to Play") {
-  <h1>Welcome to Play!</h1>
+@(authors : Seq[models.Author])(implicit request: RequestHeader)
+@main() {
+<div class="author-display" >
+  <fieldset>
+    <legend align="center"><h3>Authors</h3></legend>
+    <table cellspacing="20">
+      <tr>
+        <th>authorid</th>
+        <th>name</th>
+      </tr>
+      @for(user <- users){
+      <tr>
+        <td>@author.id</td>
+        <td>@author.name</td>
+      </tr>
+      }
+    </table>
+  </fieldset>
+</div>
 }

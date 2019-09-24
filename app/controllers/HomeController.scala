@@ -2,23 +2,27 @@ package controllers
 
 import javax.inject._
 import play.api._
+import play.api.Logging
 import play.api.mvc._
+import models.Author
+import services.AuthorService
 
-/**
- * This controller creates an `Action` to handle HTTP requests to the
- * application's home page.
- */
+
+import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.Future
+
 @Singleton
-class HomeController @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
+class HomeController @Inject()(cc: ControllerComponents, authorService: AuthorService, templateAuthors: views.html.author) extends AbstractController(cc) {
 
-  /**
-   * Create an Action to render an HTML page.
-   *
-   * The configuration in the `routes` file means that this method
-   * will be called when the application receives a `GET` request with
-   * a path of `/`.
-   */
-  def index() = Action { implicit request: Request[AnyContent] =>
+  def index(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
     Ok(views.html.index())
   }
+
+  def authorList(): Action[AnyContent] = Action.async  { implicit request: Request[AnyContent] =>
+    authorService.listAllAuthors map { authors =>
+      Ok(views.html.author(authors))
+    }
+
+  }
+
 }

@@ -1,0 +1,21 @@
+@(authors : Seq[models.Author])()
+@main() {
+    <div class="author-display" >
+        <fieldset>
+            <legend align="center"><h3>Authors</h3></legend>
+            <table cellspacing="20">
+                <tr>
+                    <th>authorid</th>
+                    <th>name</th>
+                </tr>
+                @for(user <- users){
+                <tr>
+                    <td>@author.id</td>
+                    <td>@author.name</td>
+                    <td><a href="@routes.ApplicationController.index">Книги</a></td>
+                </tr>
+                }
+            </table>
+        </fieldset>
+    </div>
+}
