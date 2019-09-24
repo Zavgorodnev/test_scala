@@ -22,7 +22,12 @@ class HomeController @Inject()(cc: ControllerComponents, authorService: AuthorSe
     authorService.listAllAuthors map { authors =>
       Ok(views.html.author(authors))
     }
+  }
 
+  def deleteUser(id: Long) = Action.async { implicit request: Request[AnyContent] =>
+    userService.deleteUser(id) map { res =>
+      Redirect(routes.HomeController.index())
+    }
   }
 
 }
