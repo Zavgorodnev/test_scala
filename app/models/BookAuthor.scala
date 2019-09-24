@@ -41,16 +41,8 @@ class BooksAuthors @Inject() (protected val dbConfigProvider: DatabaseConfigProv
     }
   }
 
-  def delete(id: Long): Future[Int] = {
-    dbConfig.db.run(users.filter(_.id === id).delete)
-  }
-
-  def get(id: Long): Future[Option[User]] = {
-    dbConfig.db.run(users.filter(_.id === id).result.headOption)
-  }
-
-  def listAll: Future[Seq[User]] = {
-    dbConfig.db.run(users.result)
+  def listAll: Future[Seq[BookAuthor]] = {
+    dbConfig.db.run(books_authors.result)
   }
 
 }
