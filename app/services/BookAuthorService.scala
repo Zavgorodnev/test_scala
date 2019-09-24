@@ -1,13 +1,14 @@
 package services
 
 import com.google.inject.Inject
-import models.{BookAuthor, BooksAuthors}
+import models.{Author, Book, BookAuthor, BooksAuthors}
 
 import scala.concurrent.Future
 
-class BookAuthorServise @Inject() (booksAuthors: BooksAuthors) {
+class BookAuthorService @Inject()(booksAuthors: BooksAuthors) {
 
-  def addBookAuthor(bookAuthor: BookAuthor): Future[String] = {
+  def addBookAuthor(book: Book, author: Author): Future[String] = {
+    //TODO
     booksAuthors.add(bookAuthor)
   }
 
