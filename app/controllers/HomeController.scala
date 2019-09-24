@@ -24,7 +24,7 @@ class HomeController @Inject()(cc: ControllerComponents, authorService: AuthorSe
     }
   }
 
-  def deleteUser(id: Long) = Action.async { implicit request: Request[AnyContent] =>
+  def deleteBook(id: Long) = Action.async { implicit request: Request[AnyContent] =>
     bookService.deleteBook(id) map { res =>
       Redirect(routes.HomeController.index())
     }
