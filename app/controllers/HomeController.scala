@@ -12,6 +12,7 @@ import scala.concurrent.Future
 
 @Singleton
 class HomeController @Inject()(cc: ControllerComponents,
+                               templateAuthor: views.html.author,
                                authorService: AuthorService,
                                bookService: BookService,
                                bookAuthorService: BookAuthorService) extends AbstractController(cc) {
