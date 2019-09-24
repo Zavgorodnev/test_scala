@@ -5,14 +5,14 @@ import play.api._
 import play.api.Logging
 import play.api.mvc._
 import models.Author
-import services.AuthorService
+import services._
 
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
 @Singleton
-class HomeController @Inject()(cc: ControllerComponents, authorService: AuthorService, templateAuthors: views.html.author) extends AbstractController(cc) {
+class HomeController @Inject()(cc: ControllerComponents, authorService: AuthorService, bookService: BookService) extends AbstractController(cc) {
 
   def index(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
     Ok(views.html.index())
@@ -25,7 +25,7 @@ class HomeController @Inject()(cc: ControllerComponents, authorService: AuthorSe
   }
 
   def deleteUser(id: Long) = Action.async { implicit request: Request[AnyContent] =>
-    userService.deleteUser(id) map { res =>
+    bookService.deleteBook(id) map { res =>
       Redirect(routes.HomeController.index())
     }
   }

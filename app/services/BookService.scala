@@ -5,7 +5,7 @@ import models.{Book, Books}
 
 import scala.concurrent.Future
 
-class UserService @Inject() (books: Books) {
+class BookService @Inject() (books: Books) {
 
   def addBook(book: Book): Future[String] = {
     books.add(book)
